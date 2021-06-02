@@ -1,0 +1,1 @@
+# SigNoz Helm Chart Operator
