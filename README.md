@@ -73,8 +73,8 @@ $ vim config/samples/monitor_v1_signoz.yaml
 - Opertor build and Push to registry
 
 ```
-$ export IMG=dther/signoz-operator:v0.07
-$ make docker-build docker-push IMG=$IMG
+$ export SIGNOZ_OPERATOR_IMG=signoz/signoz-k8s-helm-operator:v0.0.1
+$ make docker-build docker-push IMG=$SIGNOZ_OPERATOR_IMG
 ```
 
 - Install CRD on cluster and deploy operator on Cluster
