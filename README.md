@@ -80,6 +80,7 @@ $ make docker-build docker-push IMG=$SIGNOZ_OPERATOR_IMG
 - Install CRD on cluster and deploy operator on Cluster
 
 ```
+$ export IMG=$SIGNOZ_OPERATOR_IMG
 $ make install 
 $ make deploy IMG=$IMG
 ```
