@@ -1,0 +1,87 @@
+apiVersion: monitor.signoz.io/v1
+kind: Signoz
+metadata:
+  name: signoz-sample
+spec:
+  # Default values copied from <project_dir>/helm-charts/signoz/values.yaml
+  frontend:
+    enabled: true
+    named: frontend
+    config:
+      name: signoz-nginx-config
+      queryServiceUrl: signoz-sample-query-service:8080
+
+    image:
+      repository: signoz/frontend
+      pullPolicy: IfNotPresent
+
+  zookeeper:
+    enabled: true
+    name: zookeeper
+    autopurge:
+        purgeInterval: 1
+
+    image:
+      repository: bitnami/zookeeper
+      pullPolicy: IfNotPresent
+
+  kafka:
+    enabled: true
+    name: kafka
+    zookeeper:
+      enabled: false
+    externalZookeeper:
+      servers: ["signoz-sample-zookeeper:2181"]   # service name must contain name(signoz-sample) as prefix. eg. -zookeeper -> signoz-sample-zookeeper.
+    zookeeperConnectionTimeoutMs: 6000
+
+    image:
+      repository: bitnami/kafka
+      pullPolicy: IfNotPresent
+
+  druid:
+    enabled: true
+    name: druid
+
+    configVars:
+      druid_extensions_loadList: '["druid-histogram", "druid-datasketches", "druid-lookups-cached-global", "postgresql-metadata-storage", "druid-kafka-indexing-service"]'
+      druid_storage_type: local
+
+    historical:
+      persistence:
+        size: "20Gi"
+
+    zkHosts: "signoz-sample-zookeeper:2181"
+
+    zookeeper:
+      enabled: false
+
+    image:
+      repository: apache/druid
+      pullPolicy: IfNotPresent
+    
+  flattener-processor:
+    enabled: true
+    name: flattener-processor
+
+    configVars:
+      KAFKA_BROKER: signoz-sample-kafka:9092
+      KAFKA_INPUT_TOPIC: otlp_spans
+      KAFKA_OUTPUT_TOPIC: flattened_spans
+
+    image:
+      repository: signoz/flattener-processor
+      pullPolicy: IfNotPresent
+
+  query-service:
+    enabled: true
+    name: query-service
+
+    configVars:
+      DruidClientUrl: http://signoz-sample-druid-router:8888
+      DruidDatasource: flattened_spans
+
+    image:
+      repository: signoz/query-service
+      pullPolicy: IfNotPresent
+
+

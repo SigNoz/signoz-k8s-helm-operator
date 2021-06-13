@@ -1,0 +1,14 @@
+apiVersion: v1
+appVersion: 0.19.0
+deprecated: true
+description: DEPRECATED Apache Druid is a high performance real-time analytics database.
+home: https://druid.apache.org/
+icon: https://druid.apache.org/img/favicon.png
+keywords:
+- olap
+- database
+- analytics
+name: druid
+sources:
+- https://github.com/apache/druid
+version: 0.2.18
