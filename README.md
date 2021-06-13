@@ -82,7 +82,7 @@ $ make docker-build docker-push IMG=$SIGNOZ_OPERATOR_IMG
 - Install CRD on cluster and deploy operator on Cluster
 
 ```
-$ export IMG=$SIGNOZ_OPERATOR_IMG
+$ export IMG=signoz/signoz-k8s-helm-operator:v0.0.1
 $ make install 
 $ make deploy IMG=$IMG
 ```
