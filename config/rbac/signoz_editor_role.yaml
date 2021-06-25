@@ -1,0 +1,24 @@
+# permissions for end users to edit signozs.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: signoz-editor-role
+rules:
+- apiGroups:
+  - monitor.signoz.io
+  resources:
+  - signozs
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - monitor.signoz.io
+  resources:
+  - signozs/status
+  verbs:
+  - get

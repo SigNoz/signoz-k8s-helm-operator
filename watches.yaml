@@ -1,0 +1,6 @@
+# Use the 'create api' subcommand to add watches to this file.
+- group: monitor.signoz.io
+  version: v1
+  kind: Signoz
+  chart: helm-charts/signoz
+#+kubebuilder:scaffold:watch
