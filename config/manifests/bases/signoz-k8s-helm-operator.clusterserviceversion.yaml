@@ -1,0 +1,49 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: '[]'
+    capabilities: Basic Install
+  name: signoz-k8s-helm-operator.v0.0.0
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions: {}
+  description: open-source observability platform
+  displayName: signoz
+  icon:
+  - base64data: ""
+    mediatype: ""
+  install:
+    spec:
+      deployments: null
+    strategy: ""
+  installModes:
+  - supported: false
+    type: OwnNamespace
+  - supported: false
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: true
+    type: AllNamespaces
+  keywords:
+  - observability
+  - monitoring
+  - tracing
+  - stream-processing
+  - open-telemetry
+  - opentelemetry
+  - druid
+  - distributed-tracing
+  links:
+  - name: Signoz K8s Helm Operator
+    url: https://signoz-k8s-helm-operator.domain
+  maintainers:
+  - email: dtherhtun.cw@gmail.com
+    name: dtherhtun
+  maturity: alpha
+  provider:
+    name: signoz
+    url: signoz
+  version: 0.0.0
